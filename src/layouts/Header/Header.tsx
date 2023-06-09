@@ -6,10 +6,10 @@ import styles from "./Header.module.scss";
 
 function Header() {
   return (
-    <header>
-      <nav id={styles['navbar']} className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <header id={styles['header']} className="fixed-top">
+      <nav id={styles['navbar']} className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             <img src={Logo} alt="Digital Library Logo" width="160" />
           </Link>
           <button

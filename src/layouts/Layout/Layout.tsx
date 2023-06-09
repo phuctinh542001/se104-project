@@ -8,12 +8,13 @@ type LayoutProps = {
   children: ReactNode
 };
 
-function Layout({children} :  LayoutProps) {
+function Layout({children}:  LayoutProps) {
   return (
     <div>
       <Header />
       <Sidebar />
       <main id={styles['content']}>{children}</main>
+      
     </div>
   );
 }

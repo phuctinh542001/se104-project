@@ -1,4 +1,4 @@
-const SignIn = () => {
+function SignIn() {
     return (
       <div>
         <h1>About</h1>

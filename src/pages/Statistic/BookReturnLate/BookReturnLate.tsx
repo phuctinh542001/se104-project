@@ -1,6 +1,6 @@
 import Layout from "../../../layouts/Layout/Layout";
 
-const BookReturnLate = () => {
+function BookReturnLate() {
     return (
       <Layout>
         <h1>This is BookReturnLate</h1>

@@ -1,11 +1,11 @@
 import Layout from "../../../layouts/Layout/Layout";
 
-const BookLoan = () => {
+const BookLoanTicket = () => {
     return (
       <Layout>
-        <h1>This is BookLoan</h1>
+        <h1>This is BookLoanTicket</h1>
       </Layout>
     );
   };
   
-  export default BookLoan;
+  export default BookLoanTicket;

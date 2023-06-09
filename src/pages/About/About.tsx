@@ -1,6 +1,6 @@
 import Layout from "../../layouts/Layout/Layout";
 
-const About = () => {
+function About() {
     return (
       <Layout>
         <h1>This is About</h1>

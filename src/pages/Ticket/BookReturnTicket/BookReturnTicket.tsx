@@ -1,11 +1,11 @@
 import Layout from "../../../layouts/Layout/Layout";
 
-const BookReturn = () => {
+const BookReturnTicket = () => {
     return (
       <Layout>
-        <h1>This is BookReturn</h1>
+        <h1>This is BookReturnTicket</h1>
       </Layout>
     );
   };
   
-  export default BookReturn;
+  export default BookReturnTicket;

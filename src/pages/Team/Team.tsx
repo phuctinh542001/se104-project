@@ -1,6 +1,6 @@
 import Layout from "../../layouts/Layout/Layout";
 
-const Team = () => {
+function Team() {
     return (
       <Layout>
         <h1>This is Team</h1>

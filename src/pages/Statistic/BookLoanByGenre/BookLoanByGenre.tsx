@@ -1,6 +1,6 @@
 import Layout from "../../../layouts/Layout/Layout";
 
-const BookLoanByGenre = () => {
+function BookLoanByGenre() {
     return (
       <Layout>
         <h1>This is BookLoanByGenre</h1>

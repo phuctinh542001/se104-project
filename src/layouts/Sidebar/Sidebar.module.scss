@@ -1,12 +1,29 @@
 #sidebar {
     margin-top: 80px;
-    width: 280px;
+    width: 240px;
     height: calc(100% - 86px);
 }
 
+.sidebar-link {
+  padding: 8px 16px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  border-radius: 6px;
+}
+
+.sidebar-link:hover {
+  background-color: #c5e5f8;
+}
+
 .active {
-    color: white;
-    background-color: #365ba3;
+  color: white;
+  background-color: #3d8dbe;
+}
+
+.sidebar-link.active:hover {
+  color: white;
+  background-color: #3d8dbe;
 }
 
 .btn-toggle {

@@ -1,0 +1,99 @@
+{
+  "readers": [
+    {
+      "id": 1,
+      "ho_ten": "Nguyễn Văn A",
+      "loai_doc_gia": "X",
+      "ngay_sinh": "2001-01-01",
+      "dia_chi": "Dĩ An, Bình Dương",
+      "email": "phuctinh@gmail.com",
+      "ngay_lap_the": "2023-01-01"
+    },
+    {
+      "id": 2,
+      "ho_ten": "Nguyễn Văn B",
+      "loai_doc_gia": "X",
+      "ngay_sinh": "2001-01-01",
+      "dia_chi": "Dĩ An, Bình Dương",
+      "email": "phuctinh@gmail.com",
+      "ngay_lap_the": "2023-01-01"
+    },
+    {
+      "id": 3,
+      "ho_ten": "Nguyễn Văn C",
+      "loai_doc_gia": "X",
+      "ngay_sinh": "2001-01-01",
+      "dia_chi": "Dĩ An, Bình Dương",
+      "email": "phuctinh@gmail.com",
+      "ngay_lap_the": "2023-01-01"
+    },
+    {
+      "ho_ten": "Tạ Thị Đậu",
+      "loai_doc_gia": "X ",
+      "ngay_sinh": "2006-01-01",
+      "dia_chi": "Thủ Đức",
+      "email": "dau@gmail.com",
+      "ngay_lap_the": "2023-01-01",
+      "id": 12
+    },
+    {
+      "ho_ten": "Phúc Tinh",
+      "loai_doc_gia": "X",
+      "ngay_sinh": "2001-05-04",
+      "dia_chi": "Tam Bình, Vĩnh Long",
+      "email": "phuctinh@gmail.com",
+      "ngay_lap_the": "2023-01-01",
+      "id": 17
+    },
+    {
+      "ho_ten": "Hahah",
+      "loai_doc_gia": "Y",
+      "ngay_sinh": "2023-06-08",
+      "dia_chi": "Quận 1, Hồ Chí Minh",
+      "email": "hahah@gmail.com",
+      "ngay_lap_the": "2023-06-08",
+      "id": 18
+    },
+    {
+      "ho_ten": "Nguyen Tinh",
+      "loai_doc_gia": "Y",
+      "ngay_sinh": "2023-06-14",
+      "dia_chi": "fdafsadf",
+      "email": "adsfasdfasdf",
+      "ngay_lap_the": "2023-06-09",
+      "id": 20
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "ten_sach": "Mot Dua Tre",
+      "the_loai": "A",
+      "tac_gia": "Phuc Tinh",
+      "nam_xb": "2001",
+      "nxb": "Kim Dong",
+      "ngay_nhap": "2016-02-05",
+      "tri_gia": "20000"
+    },
+    {
+      "id": 2,
+      "ten_sach": "Hai Dua Tre",
+      "the_loai": "A",
+      "tac_gia": "Phuc Tinh",
+      "nam_xb": "2001",
+      "nxb": "Kim Dong",
+      "ngay_nhap": "2016-02-05",
+      "tri_gia": "20000"
+    },
+    {
+      "ten_sach": "Truyền Kiều",
+      "the_loai": "B",
+      "tac_gia": "Nguyễn Du",
+      "nam_xb": "2004",
+      "nxb": "Kim Đồng",
+      "ngay_nhap": "2023-06-08",
+      "tri_gia": "20000",
+      "id": 3
+    }
+  ]
+}
