@@ -1,13 +1,13 @@
 import Modal from "components/Modal/Modal";
 
-type DeleteBookModalProps = {
-  idBook: number;
-  handleSubmit: (idBook: number) => any;
+type DeleteBookLoanModalProps = {
+  idDelete: number;
+  handleSubmit: (idReader: number) => any;
 };
 
-function DeleteBookModal({ idBook, handleSubmit }: DeleteBookModalProps) {
+function DeleteBookLoanModal({ idDelete, handleSubmit }: DeleteBookLoanModalProps) {
   return (
-    <Modal title="Xóa sách" modalId="deleteBook">
+    <Modal title="Xóa Phiếu mượn sách" modalId="deleteBookLoanTicket">
       <div className="row g-3">
         <div className="col-md-12">Vui lòng xác nhận để xóa</div>
         <button
@@ -15,9 +15,9 @@ function DeleteBookModal({ idBook, handleSubmit }: DeleteBookModalProps) {
           type="button"
           data-bs-dismiss="modal"
           onClick={() => {
-            handleSubmit(idBook);
+            handleSubmit(idDelete);
           }}
-          style={{backgroundColor: "crimson", border: "none"}}
+          style={{ backgroundColor: "crimson", border: "none" }}
         >
           Xác nhận xóa
         </button>
@@ -26,4 +26,4 @@ function DeleteBookModal({ idBook, handleSubmit }: DeleteBookModalProps) {
   );
 }
 
-export default DeleteBookModal;
+export default DeleteBookLoanModal;

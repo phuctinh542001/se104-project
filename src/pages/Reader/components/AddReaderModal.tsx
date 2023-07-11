@@ -53,13 +53,14 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             className="form-control"
             id="inputHoTen"
             placeholder="Nguyễn Văn A"
-            value={inputHoTen}
+            value={inputHoTen ? inputHoTen : ""}
             required={true}
             onChange={(e) => {
               setInputHoTen(e.target.value);
             }}
           />
         </div>
+
         {/* Loại độc giả */}
         <div className="col-md-6">
           <label htmlFor="inputLoaiDocGia" className="form-label">
@@ -69,7 +70,7 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             id="inputLoaiDocGia"
             className="form-select"
             aria-label="Default select example"
-            value={inputLoaiDocGia}
+            value={inputLoaiDocGia ? inputLoaiDocGia : ""}
             required={true}
             onChange={(e) => {
               setInputLoaiDocGia(e.target.value);
@@ -82,6 +83,7 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             <option value="Y">Y</option>
           </select>
         </div>
+
         {/* Ngày sinh */}
         <div className="col-12">
           <label htmlFor="inputNgaySinh" className="form-label">
@@ -92,14 +94,17 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             className="form-control"
             id="inputNgaySinh"
             placeholder="01/01/2001"
-            value={inputNgaySinh}
+            value={inputNgaySinh ? inputNgaySinh: ""}
             required={true}
             onChange={(e) => {
               const inputDate = new Date(e.target.value);
-              setInputNgaySinh(inputDate.toISOString().split("T")[0]);
+              if (inputDate.getTime()) {
+                setInputNgaySinh(inputDate.toISOString().split("T")[0]);
+              }
             }}
           />
         </div>
+
         {/* Địa chỉ */}
         <div className="col-12">
           <label htmlFor="inputDiaChi" className="form-label">
@@ -110,13 +115,14 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             className="form-control"
             id="inputDiaChi"
             placeholder="Dĩ An, Bình Dương"
-            value={inputDiaChi}
+            value={inputDiaChi ? inputDiaChi : ""}
             required={true}
             onChange={(e) => {
               setInputDiaChi(e.target.value);
             }}
           />
         </div>
+
         {/* Email */}
         <div className="col-md-12">
           <label htmlFor="inputEmail" className="form-label">
@@ -127,13 +133,14 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             className="form-control"
             id="inputEmail"
             placeholder="example@gmail.com"
-            value={inputEmail}
+            value={inputEmail ? inputEmail : ""}
             required={true}
             onChange={(e) => {
               setInputEmail(e.target.value);
             }}
           />
         </div>
+
         {/* Ngày lập thẻ */}
         <div className="col-md-12">
           <label htmlFor="inputNgayLapThe" className="form-label">
@@ -143,14 +150,17 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
             type="date"
             className="form-control"
             id="inputNgayLapThe"
-            value={inputNgayLapThe}
+            value={inputNgayLapThe ? inputNgayLapThe : ""}
             required={true}
             onChange={(e) => {
               const inputDate = new Date(e.target.value);
-              setInputNgayLapThe(inputDate.toISOString().split("T")[0]);
+              if (inputDate.getTime()) {
+                setInputNgayLapThe(inputDate.toISOString().split("T")[0]);
+              }
             }}
           />
         </div>
+        
         <button
           className="btn btn-primary"
           type="submit"
@@ -170,7 +180,7 @@ function AddReaderModal({ handleSubmit }: AddReaderModalProps) {
 
             setInputHoTen("");
             setInputLoaiDocGia("");
-            setInputNgaySinh(now.toISOString().split("T")[0]);
+            setInputNgaySinh("");
             setInputDiaChi("");
             setInputEmail("");
             setInputNgayLapThe(now.toISOString().split("T")[0]);

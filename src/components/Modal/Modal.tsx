@@ -4,13 +4,14 @@ type ModalProps = {
   children: ReactNode;
   title: string;
   modalId: string;
+  size?: string
 };
 
-function Modal({ children, title, modalId }: ModalProps) {
+function Modal({ children, title, modalId, size }: ModalProps) {
   return (
     <div>
       <div
-        className="modal fade"
+        className={`modal fade ${size}`}
         id={modalId}
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"

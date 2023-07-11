@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Modal from "components/Modal/Modal";
+import { API_URL } from "assets/config";
+
 
 type UpdateReaderModalProps = {
   idReader: number;
@@ -40,7 +42,7 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
   useEffect(() => {
     if (idReader !== 0)
       axios
-        .get("http://localhost:3030/readers/" + idReader)
+        .get(API_URL + "the-doc-gia/" + idReader)
         .then((response: any) => {
           setInputHoTen(response.data.ho_ten);
           setInputLoaiDocGia(response.data.loai_doc_gia);
@@ -71,7 +73,7 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             type="text"
             className="form-control"
             id="inputHoTen"
-            value={inputHoTen}
+            value={inputHoTen ? inputHoTen : ""}
             required={true}
             onChange={(e) => {
               setInputHoTen(e.target.value);
@@ -87,7 +89,7 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             id="inputLoaiDocGia"
             className="form-select"
             aria-label="Default select example"
-            value={inputLoaiDocGia}
+            value={inputLoaiDocGia ? inputLoaiDocGia : ""}
             required={true}
             onChange={(e) => {
               setInputLoaiDocGia(e.target.value);
@@ -109,11 +111,13 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             type="date"
             className="form-control"
             id="inputNgaySinh"
-            value={inputNgaySinh}
+            value={inputNgaySinh ? inputNgaySinh : ""}
             required={true}
             onChange={(e) => {
               const inputDate = new Date(e.target.value);
-              setInputNgaySinh(inputDate.toISOString().split("T")[0]);
+              if (inputDate.getTime()) {
+                setInputNgaySinh(inputDate.toISOString().split("T")[0]);
+              }
             }}
           />
         </div>
@@ -126,7 +130,7 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             type="text"
             className="form-control"
             id="inputDiaChi"
-            value={inputDiaChi}
+            value={inputDiaChi ? inputDiaChi : ""}
             required={true}
             onChange={(e) => {
               setInputDiaChi(e.target.value);
@@ -142,11 +146,12 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             type="text"
             className="form-control"
             id="inputEmail"
-            value={inputEmail}
+            value={inputEmail ? inputEmail : ""}
             required={true}
             onChange={(e) => {
               setInputEmail(e.target.value);
             }}
+            disabled
           />
         </div>
         {/* Ngày lập thẻ */}
@@ -158,14 +163,17 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
             type="date"
             className="form-control"
             id="inputNgayLapThe"
-            value={inputNgayLapThe}
+            value={inputNgayLapThe ? inputNgayLapThe : ""}
             required={true}
             onChange={(e) => {
               const inputDate = new Date(e.target.value);
-              setInputNgayLapThe(inputDate.toISOString().split("T")[0]);
+              if (inputDate.getTime()) {
+                setInputNgayLapThe(inputDate.toISOString().split("T")[0]);
+              }
             }}
           />
         </div>
+
         <button
           className="btn btn-primary"
           type="submit"
@@ -183,12 +191,6 @@ function UpdateReaderModal({ idReader, handleSubmit }: UpdateReaderModalProps) {
               ngay_lap_the: inputNgayLapThe,
             };
 
-            setInputHoTen("");
-            setInputLoaiDocGia("");
-            setInputNgaySinh(now.toISOString().split("T")[0]);
-            setInputDiaChi("");
-            setInputEmail("");
-            setInputNgayLapThe(now.toISOString().split("T")[0]);
             setIsValidate(false);
 
             handleSubmit(idReader, newReader);

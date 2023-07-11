@@ -10,16 +10,17 @@ import AddReaderModal from "./components/AddReaderModal";
 import UpdateReaderModal from "./components/UpdateReaderModal";
 import DeleteReaderModal from "./components/DeleteReaderModal";
 
-import styles from "../Pages.module.scss";
+import styles from "assets/Pages.module.scss";
+import { API_URL } from "assets/config";
 
-function Home() {
+function Reader() {
   const [readers, setReaders] = useState([]) as any;
   const [idUpdateReader, setIdUpdateReader] = useState(0);
   const [idDeleteReader, setIdDeleteReader] = useState(0);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/readers")
+      .get(API_URL + "the-doc-gia")
       .then((response: any) => {
         setReaders(response.data);
       })
@@ -30,53 +31,54 @@ function Home() {
 
   function handleAdd(newReader: any) {
     axios
-      .post("http://localhost:3030/readers", newReader)
+      .post(API_URL + "the-doc-gia", newReader)
       .then(function (response) {
         setReaders([...readers, response.data]);
-        console.log(response);
+        alert("Thêm Thành Công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
-
-    console.log("Thêm thành công");
   }
 
   function handleUpdate(idReader: number, newReader: any) {
     axios
-      .put("http://localhost:3030/readers/" + idReader, newReader)
+      .put(API_URL + "the-doc-gia/" + idReader, newReader)
       .then(function (response) {
-        setReaders(readers.map((reader: any) => {
-          if (reader.id === idReader)
-            return response.data
-          return reader
-        }));
-        console.log(response);
+        setReaders(
+          readers.map((reader: any) => {
+            if (reader.id === idReader) 
+              return {
+                id: idReader,
+                ...response.data
+              };
+            return reader;
+          })
+        );
+        alert("Cập nhật thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
     setIdUpdateReader(0);
-    console.log("Cập nhật thành công");
   }
 
   function handleDelete(idReader: number) {
-    console.log(idReader)
+    console.log(idReader);
     axios
-      .delete("http://localhost:3030/readers/" + idReader)
+      .delete(API_URL + "the-doc-gia/" + idReader)
       .then(function (response) {
         setReaders(
           readers.filter((reader: any) => {
             return reader.id !== idReader;
           })
         );
-        console.log(response);
+        alert("Xóa thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
     setIdDeleteReader(0);
-    console.log("Xóa thành công");
   }
 
   const tableHead = [
@@ -87,6 +89,7 @@ function Home() {
     "Địa chỉ",
     "Email",
     "Ngày lập thẻ",
+    "Tổng nợ",
   ];
 
   const tableData: string[][] = [];
@@ -100,6 +103,7 @@ function Home() {
         reader.dia_chi,
         reader.email,
         reader.ngay_lap_the,
+        reader.tong_no,
         reader.id,
       ];
       tableData.push(rowItem);
@@ -158,4 +162,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Reader;

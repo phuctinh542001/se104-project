@@ -10,18 +10,22 @@ import AddBookModal from "./components/AddBookModal";
 import UpdateBookModal from "./components/UpdateBookModal";
 import DeleteBookModal from "./components/DeleteBookModal";
 
-import styles from "../Pages.module.scss";
+import styles from "assets/Pages.module.scss";
+import { API_URL } from "assets/config";
 
 function Book() {
   const [books, setBooks] = useState([]) as any;
+  const [superBooks, setSuperBooks] = useState([]) as any;
+  const [inputSearch, setInputSearch] = useState("");
   const [idUpdateBook, setIdUpdateBook] = useState(0);
   const [idDeleteBook, setIdDeleteBook] = useState(0);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/books")
+      .get("http://localhost:8000/api/sach")
       .then((response: any) => {
         setBooks(response.data);
+        setSuperBooks(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -30,64 +34,72 @@ function Book() {
 
   function handleAdd(newBook: any) {
     axios
-      .post("http://localhost:3030/books", newBook)
+      .post(API_URL + "sach", newBook)
       .then(function (response) {
-        setBooks([...books, response.data]);
-        console.log(response);
+        setBooks([...books, newBook]);
+        alert("Thêm thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
-
-    console.log("Thêm thành công");
   }
 
   function handleUpdate(idBook: number, newBook: any) {
     console.log(newBook);
     axios
-      .put("http://localhost:3030/books/" + idBook, newBook)
+      .put(API_URL + "sach/" + idBook, newBook)
       .then(function (response) {
-        setBooks(books.map((book: any) => {
-          if (book.id === idBook)
-            return response.data
-          return book
-        }));
-        console.log(response);
+        setBooks(
+          books.map((book: any) => {
+            if (book.id === idBook)
+              return {
+                id: idBook,
+                ...newBook,
+              };
+            return book;
+          })
+        );
+        alert("Cập nhật thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
     setIdUpdateBook(0);
-    console.log("Cập nhật thành công");
   }
 
   function handleDelete(idBook: number) {
     axios
-      .delete("http://localhost:3030/books/" + idBook)
+      .delete(API_URL + "sach/" + idBook)
       .then(function (response) {
         setBooks(
           books.filter((book: any) => {
             return book.id !== idBook;
           })
         );
-        console.log(response);
+        alert("Xóa thành công");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data);
       });
     setIdDeleteBook(0);
-    console.log("Xóa thành công");
   }
 
+  function handleSearch() {
+    if (inputSearch != "") {
+      setBooks(superBooks.filter((b: any) => {
+        return b.ten_sach.includes(inputSearch)
+      }))
+    } else
+      setBooks(superBooks)
+  }
   const tableHead = [
     "STT",
+    "Mã sách",
     "Tên sách",
     "Thể loại",
     "Tác giả",
-    "Năm XB",
-    "Nhà XB",
-    "Ngày nhập",
-    "Trị giá"
+    "Trị giá",
+    "Số lượng",
   ];
 
   const tableData: string[][] = [];
@@ -95,13 +107,12 @@ function Book() {
     books.forEach((book: any, index: number) => {
       const rowItem = [
         (index + 1).toString(),
+        book.ma_sach,
         book.ten_sach,
-        book.the_loai,
-        book.tac_gia,
-        book.nam_xb,
-        book.nxb,
-        book.ngay_nhap,
+        book.ten_the_loai,
+        book.ten_tac_gia,
         book.tri_gia,
+        book.so_luong,
         book.id,
       ];
       tableData.push(rowItem);
@@ -129,6 +140,16 @@ function Book() {
     <Layout>
       <Banner title="Quản lý sách" />
       <TitleSection title="Danh sách những quyển sách trong thư viện" />
+      <input
+        style={{
+          marginBottom: "20px",
+          width: "400px"
+        }}
+        type="text"
+        placeholder="Nhập tên sách cần tìm"
+        onChange={(e) => {setInputSearch(e.target.value)}}
+      />
+      <button onClick={handleSearch}>Tìm kiếm</button>
       <Table
         tableHead={tableHead}
         tableData={tableData}
@@ -148,14 +169,8 @@ function Book() {
       </div>
 
       <AddBookModal handleSubmit={handleAdd} />
-      <UpdateBookModal
-        idBook={idUpdateBook}
-        handleSubmit={handleUpdate}
-      />
-      <DeleteBookModal
-        idBook={idDeleteBook}
-        handleSubmit={handleDelete}
-      />
+      <UpdateBookModal idBook={idUpdateBook} handleSubmit={handleUpdate} />
+      <DeleteBookModal idBook={idDeleteBook} handleSubmit={handleDelete} />
     </Layout>
   );
 }

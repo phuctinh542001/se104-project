@@ -7,7 +7,7 @@ type DeleteReaderModalProps = {
 
 function DeleteReaderModal({ idReader, handleSubmit }: DeleteReaderModalProps) {
   return (
-    <Modal title="Xóa sách" modalId="deleteReader">
+    <Modal title="Xóa Thẻ Độc Giả" modalId="deleteReader">
       <div className="row g-3">
         <div className="col-md-12">Vui lòng xác nhận để xóa</div>
         <button
